@@ -1,0 +1,49 @@
+  public static int[] selectionSort(int[] arr)
+    {
+         
+        for (int i = 0; i < arr.length - 1; i++)
+        {
+            int index = i;
+            for (int j = i + 1; j < arr.length; j++)
+                if (arr[j] < arr[index])
+                    index = j;
+      
+            int smallerNumber = arr[index]; 
+            arr[index] = arr[i];
+            arr[i] = smallerNumber;
+        }
+        return arr;
+    }
+    
+    public void quickSort(int arr[], int leftbound, int rightbound)         // recursively called to sub-array items
+    {
+          int index = split(arr, leftbound, rightbound);
+          if (leftbound < index - 1)
+                quickSort(arr, leftbound, index - 1);
+          if (index < rightbound)
+                quickSort(arr, index, rightbound);
+    }
+    
+    public int split(int arr[], int leftbound, int rightbound)      // used in quickSort
+    {
+        int i = leftbound, j = rightbound;
+        int tmp;
+        int pivot = arr[(leftbound + rightbound) / 2];              // the pivot
+     
+        while (i <= j)                                              //re-order array so itsms less than pivot on left, greater on right
+        {
+            while (arr[i] < pivot)
+                  i++;
+            while (arr[j] > pivot)
+                  j--;
+            if (i <= j) 
+            {
+                tmp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = tmp;
+                i++;
+                j--;
+            }
+        }
+        return i;
+    }  
