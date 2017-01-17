@@ -23,15 +23,15 @@ public class Tests {
 	}
 	
 	public static void main(String [] args) {
-		int []arr = new int[10];
-		generateArray(arr, 10);
-		System.out.println("Original List");
-		printArray(arr);
+		int []arr = new int[10000];
+		generateArray(arr, 10000);
 		System.out.println(checkSorted(arr));
-		System.out.println("Sorted List with Merge Sort");
-		Sorts.mergeSort(arr, 10);
-		printArray(arr);	
+		System.out.println("Sorted List with Quick Sort");
+		Sorts.quickSort(arr, 10000);
+		//printArray(arr);
+		//Sorts.selectionSort(arr, 10);
 		System.out.println("List sorted?" + " " + checkSorted(arr));
-	}
+	} 
+	
 
 }
