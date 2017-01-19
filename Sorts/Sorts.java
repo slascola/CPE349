@@ -1,3 +1,9 @@
+/*Stephanie Lascola slascola@calpoly.edu
+Arya Karnik akarnik@calpoly.edu
+Project 1
+January 20, 2017
+*/
+
 import java.util.*;
 
 public class Sorts {
