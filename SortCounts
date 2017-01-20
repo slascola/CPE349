@@ -1,0 +1,36 @@
+import java.util.*;
+
+public class SortCounts {
+    public static void main(String[] args) {
+        long selectionCount = 0;
+        long selectionAverage = 0;
+        int mergeCount = 0;
+        int mergeAverage = 0;
+        int[] elements1 = new int[12800];
+        int[] elements2 = new int[12800];
+        int[] elements3 = new int[12800];
+
+        for (int i = 100; i <= 12800; i*=2) {
+            selectionCount = 0;
+            for (int a = 0; a < 100; a++) {
+                for (int j = 0; j < i; j++) {
+                    Random rand = new Random();
+                    elements1[j] = rand.nextInt((i - 0) + 1);
+                    elements2[j] = rand.nextInt((i - 0) + 1);
+                    elements3[j] = rand.nextInt((i - 0) + 1);
+                }
+                selectionCount += Sorts1.selectionSort(elements1, i);
+                mergeCount += Sorts1.mergeSort(elements2, i);
+            } 
+            selectionAverage = selectionCount/100;
+            mergeAverage = mergeCount/100;
+            System.out.println("N=" + i + " C_ss=" + selectionAverage + " C_ms=" + mergeAverage);
+        }
+    }
+}
+
+
+
+
+
+
