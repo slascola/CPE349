@@ -1,4 +1,5 @@
-
+import java.util.*;
+import java.io.*;
 public class Test {
 
     public static void main(String [] args) {
@@ -42,10 +43,10 @@ public class Test {
         int colsB = Integer.parseInt(strArray[1]);
         B = new int[rowsB][colsB];
 
-        if (colsA != rowsB) {
-            System.out.println("The sizes of the matrices make it so that multiplication cannot occur.\n");
-            System.exit(0);
-        }
+//        if (colsA != rowsB) {
+//            System.out.println("The sizes of the matrices make it so that multiplication cannot occur.\n");
+//            System.exit(0);
+//        }
 
         counter = 0;
         for (int i = 0; i < rowsB; i++) {
@@ -59,15 +60,14 @@ public class Test {
         }
 
         C = new int[A.length][B[0].length];
-        C = matrixProduct(A, B);
+        C = MatrixProduct.matrixProduct_DAC(A, B);
 
-        System.out.println("Product Matrix:");
-        for (int i = 0; i < C.length; i++) {
-            for (int j = 0; j < C[0].length; j++) {
-                System.out.print(C[i][j] + " ");
-            }
-            System.out.println();
-        }
+//        System.out.println("Product Matrix:");
+//        for (int i = 0; i < C.length; i++) {
+//            for (int j = 0; j < C[0].length; j++) {
+//                System.out.print(C[i][j] + " ");
+//            }
+//            System.out.println();
+//        }
     }
 }
-    
