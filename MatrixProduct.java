@@ -26,24 +26,38 @@ public class MatrixProduct {
         }
         else {
             //Recursive calls based off 0 or 1/2 of matrix
-            C11 = addMatrices(matrixProduct_DAC(A, 0, 0, B, 0, 0, n/2), matrixProduct_DAC(A, 0, n/2, B, n/2, 0, n/2));
-            C12 = addMatrices(matrixProduct_DAC(A, 0, 0, B, 0, n/2, n/2), matrixProduct_DAC(A, 0, n/2, B, n/2, n/2, n/2));
-            C21 = addMatrices(matrixProduct_DAC(A, n/2, 0, B, 0, 0, n/2), matrixProduct_DAC(A, n/2, n/2, B, n/2, 0, n/2));
-            C22 = addMatrices(matrixProduct_DAC(A, n/2, 0, B, 0, n/2, n/2), matrixProduct_DAC(A, n/2, n/2, B, n/2, n/2, n/2));
-            
-            // for (int i = 0; i < C.length; i++) {
-            //     for (int j = 0; j < C.length; j++) {
-            //         System.out.println(C[i][j])
-            //     }
-            // }
+            C11 = addMatrices(matrixProduct_DAC(A, startRowA, startColA, B, startRowB, startColB, n/2), 
+             matrixProduct_DAC(A, startRowA, startColA+n/2, B, startRowB+n/2, startColB, n/2));
+            C12 = addMatrices(matrixProduct_DAC(A, startRowA, startColA, B, startRowB, startColB+n/2, n/2),
+             matrixProduct_DAC(A, startRowA, startColA+n/2, B, startRowB+n/2, startColB+n/2, n/2));
+            C21 = addMatrices(matrixProduct_DAC(A, startRowA+n/2, startColA, B, startRowB, startColB, n/2),
+             matrixProduct_DAC(A, startRowA+n/2, startColA+n/2, B, startRowB+n/2, startColB, n/2));
+            C22 = addMatrices(matrixProduct_DAC(A, startRowA+n/2, startColA, B, startRowB, startColB+n/2, n/2),
+             matrixProduct_DAC(A, startRowA+n/2, startColA+n/2, B, startRowB+n/2, startColB+n/2, n/2));
 
-            //System.out.println((C11+1).length);
+            for (int i = 0; i < C11.length; i++) {
+                for (int j = 0; j < C11.length; j++) {
+                    C[i][j] = C11[i][j];
+                }
+            }
 
-            System.out.println(Arrays.deepToString(C11)); 
-            System.out.println(Arrays.deepToString(C12)); 
-            System.out.println(Arrays.deepToString(C21)); 
-            System.out.println(Arrays.deepToString(C22)); 
+            for (int i = 0; i < C12.length; i++) {
+                for (int j = 0; j < C12.length; j++) {
+                    C[i][j+n/2] = C12[i][j];
+                }
+            }
 
+            for (int i = 0; i < C21.length; i++) {
+                for (int j = 0; j < C21.length; j++) {
+                    C[i+n/2][j] = C21[i][j];
+                }
+            }
+
+            for (int i = 0; i < C22.length; i++) {
+                for (int j = 0; j < C22.length; j++) {
+                    C[i+n/2][j+n/2] = C22[i][j];
+                }
+            }
         }
         return C;
     }
