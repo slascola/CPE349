@@ -1,13 +1,15 @@
 import java.io.*;
 import java.util.*;
-
-
 public class MatrixProduct {
 
     public static int[][] matrixProduct_DAC(int[][] A, int[][] B) {
         int[][] product = new int[A.length][B.length];
+	
+		  if (A.length == 1 && B.length == 1) {
+				product[0][0] = A[0][0] * B[0][0];
+		  }
         
-        if ((A.length != A[1].length) || (B.length != B[1].length) || (A.length != B.length) || (A[1].length != B[1].length) || (A.length % 2 != 0) || (B.length % 2 != 0)) {
+        else if ((A.length == 1) || (B.length == 1) || (A.length != A[1].length) || (B.length != B[1].length) || (A.length != B.length) || (A[1].length != B[1].length) || (A.length % 2 != 0) || (B.length % 2 != 0)) {
             System.out.println("IllegalArgumentException: Invalid matrix sizes\n");
             System.exit(0);
             }
@@ -76,7 +78,10 @@ public class MatrixProduct {
     public static int[][] matrixProduct_Strassen(int[][] A, int[][] B) {
         int[][] product = new int[A.length][B.length];
         
-        if ((A.length != A[1].length) || (B.length != B[1].length) || (A.length != B.length) || (A[1].length != B[1].length) || (A.length % 2 != 0) || (B.length % 2 != 0)) {
+		  if (A.length == 1 && B.length == 1) {
+				product[0][0] = A[0][0] * B[0][0];
+        }
+        else if ((A.length == 1) || (B.length == 1) || (A.length != A[1].length) || (B.length != B[1].length) || (A.length != B.length) || (A[1].length != B[1].length) || (A.length % 2 != 0) || (B.length % 2 != 0)) {
             System.out.println("IllegalArgumentException: Invalid matrix sizes\n");
             System.exit(0);
             }
