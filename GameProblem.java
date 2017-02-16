@@ -85,7 +85,7 @@ public class GameProblem {
     }
 
     private static void findMaxValue(int[][] maxScores, char[][] R) {
-        int maxValue = 0;
+        int maxValue = maxScores[0][0];
         int xStartCoord = 0;
         int yStartCoord = 0;
 
