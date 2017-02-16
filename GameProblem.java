@@ -57,7 +57,7 @@ public class GameProblem {
         }
 
         for (int i = n-2; i >=0; i--) {
-            maxScores[i][m-1] = Math.max(maxScores[i + 1][m-1], 0) + A[i][m-1]; 
+            //maxScores[i][m-1] = Math.max(maxScores[i + 1][m-1], 0) + A[i][m-1]; 
             if (maxScores[i + 1][m-1] >= 0) {
                 maxScores[i][m-1] = maxScores[i + 1][m-1] + A[i][m-1];
                 R[i][m-1] = 'D';
