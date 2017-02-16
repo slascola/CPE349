@@ -44,7 +44,10 @@ public class GameProblem {
         char[][] R = new char[n][m];
 
         maxScores[n-1][m-1] = A[n-1][m-1];
-
+        //Check for only 1 row and 1 col
+        if (n== 1 && m == 1) {
+            R[n-1][m-1] = 'E';
+        }
         for (int j = m-2; j >=0; j--) {
             if (maxScores[n-1][j + 1] >= 0) {
                 maxScores[n-1][j] = maxScores[n-1][j + 1] + A[n-1][j];
