@@ -1,3 +1,7 @@
+// Arya Karnik (akarnik@calpoly.edu), Stephanie Lascola (slascola@calpoly.edu)
+// 02/17/17
+// Project 3
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -44,10 +48,8 @@ public class GameProblem {
         char[][] R = new char[n][m];
 
         maxScores[n-1][m-1] = A[n-1][m-1];
-        //Check for only 1 row and 1 col
-        if (n== 1 && m == 1) {
-            R[n-1][m-1] = 'E';
-        }
+        R[n-1][m-1] = 'E';
+
         for (int j = m-2; j >=0; j--) {
             if (maxScores[n-1][j + 1] >= 0) {
                 maxScores[n-1][j] = maxScores[n-1][j + 1] + A[n-1][j];
@@ -59,8 +61,7 @@ public class GameProblem {
             }
         }
 
-        for (int i = n-2; i >=0; i--) {
-            //maxScores[i][m-1] = Math.max(maxScores[i + 1][m-1], 0) + A[i][m-1]; 
+        for (int i = n-2; i >=0; i--) { 
             if (maxScores[i + 1][m-1] >= 0) {
                 maxScores[i][m-1] = maxScores[i + 1][m-1] + A[i][m-1];
                 R[i][m-1] = 'D';
