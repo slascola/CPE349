@@ -42,11 +42,31 @@ public class ChangeMaker {
             System.out.println("Enter a positive amount to be changed (enter 0 to quit):");
             n = input.nextInt();
             if (n == 0) {
+            	System.out.println("Thanks for playing. Good Bye.");
                 System.exit(0);
             }
 
             result = change_DP(n, d);
             System.out.println("DP algorithm results");
+            System.out.println("Amount: " + n);
+            for (int i = 0; i < k; i++) {
+                if (result[i] != 0) {
+                	if (firstHit != 0) {
+                		System.out.print(" + ");
+                	}
+                    System.out.print(result[i] + "*" + d[i] + "c");
+                    count+=result[i];
+                    firstHit = 1;
+                }
+            }
+            System.out.println();
+            System.out.println("Optimal coin count: " + count);
+            System.out.println();
+            firstHit = 0;
+            count = 0;
+            
+            result = change_greedy(n, d);
+            System.out.println("Greedy algorithm results");
             System.out.println("Amount: " + n);
             for (int i = 0; i < k; i++) {
                 if (result[i] != 0) {
@@ -94,7 +114,22 @@ public class ChangeMaker {
             result[curIndex]++;
             n-=d[curIndex];
         }
-
         return result;
+    }
+    
+    public static int[] change_greedy(int n, int[] d) {
+    	int[] result = new int[d.length];
+    	int count = 0;
+    	
+    	while (n >= 0 && count < d.length) {
+    		if (d[count] <= n) {
+    			while (n - d[count] >= 0) {
+    				n-=d[count];
+    				result[count]++;
+    			}
+    		}
+    		count++;
+    	}
+    	return result;
     }
 }
