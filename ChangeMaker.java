@@ -23,10 +23,10 @@ public class ChangeMaker {
             k = Integer.parseInt(strArray[0]);
             d = new int[k];
 
-            for (int i = 0; i < k; i++){
-                String nextLine = input.nextLine();
-                String[] valueArray = nextLine.split(" "); 
-                d[i] = Integer.parseInt(valueArray[0]);
+            String nextLine = input.nextLine();
+            String[] valueArray = nextLine.split(" ");
+            for (int i = 0; i < k; i++) { 
+                d[i] = Integer.parseInt(valueArray[i]);
             }
         }
         else {
@@ -46,7 +46,7 @@ public class ChangeMaker {
             }
 
             result = change_DP(n, d);
-
+            System.out.println("DP algorithm results");
             System.out.println("Amount: " + n);
             for (int i = 0; i < k; i++) {
                 if (result[i] != 0) {
