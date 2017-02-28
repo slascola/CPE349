@@ -12,6 +12,8 @@ public class ChangeMaker {
         int[] d;
         int n = 10;
         int[] result; 
+        int count = 0;
+        int firstHit = 0;
 
         System.out.println("Enter the number of coins and the coin values in decreasing order:");
         Scanner input = new Scanner(System.in);
@@ -26,8 +28,6 @@ public class ChangeMaker {
                 String[] valueArray = nextLine.split(" "); 
                 d[i] = Integer.parseInt(valueArray[0]);
             }
-            // System.out.println("k: " + k);
-            // System.out.println("d: " + Arrays.toString(d));
         }
         else {
             String[] strArray = firstLine.split(" ");
@@ -38,9 +38,6 @@ public class ChangeMaker {
                 d[i] = Integer.parseInt(strArray[i+1]);
             }
         }
-        // System.out.println("k: " + k);
-        // System.out.println("d: " + Arrays.toString(d));
-
         while (n > 0) {
             System.out.println("Enter a value for n: positive value if needs change or 0 to quit:");
             n = input.nextInt();
@@ -53,16 +50,19 @@ public class ChangeMaker {
             System.out.println("Amount: " + n);
             for (int i = 0; i < k; i++) {
                 if (result[i] != 0) {
-                    System.out.print(result[i] + "*" + d[i] + "c + ");
+                	if (firstHit != 0) {
+                		System.out.print(" + ");
+                	}
+                    System.out.print(result[i] + "*" + d[i] + "c");
+                    count+=result[i];
+                    firstHit = 1;
                 }
             }
             System.out.println();
-
-
-        // Amount: 87
-        // Optimal distribution: 3*25c + 1*10c +2*1c
-        // Optimal coin count: 6
-        // Attention: the formatting of 
+            System.out.println("Optimal coin count: " + count);
+            System.out.println();
+            firstHit = 0;
+            count = 0;
         }
 
     }
@@ -89,10 +89,6 @@ public class ChangeMaker {
             C[j] = minValue + 1;
             A[j] = aIndex;
         } 
-
-        System.out.println("a: " + Arrays.toString(A));
-        System.out.println("c: " + Arrays.toString(C));
-
         while (n > 0) {
             curIndex = A[n];
             result[curIndex]++;
