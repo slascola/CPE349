@@ -15,7 +15,7 @@ public class ChangeMaker {
         int count = 0;
         int firstHit = 0;
 
-        System.out.println("Enter the number of coins and the coin values in decreasing order:");
+        System.out.println("Enter the number of coin-denominations and set of coin values:");
         Scanner input = new Scanner(System.in);
         String firstLine = input.nextLine();
         if (firstLine.length() == 1) {
@@ -39,7 +39,7 @@ public class ChangeMaker {
             }
         }
         while (n > 0) {
-            System.out.println("Enter a value for n: positive value if needs change or 0 to quit:");
+            System.out.println("Enter a positive amount to be changed (enter 0 to quit):");
             n = input.nextInt();
             if (n == 0) {
                 System.exit(0);
