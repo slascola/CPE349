@@ -17,32 +17,18 @@ public class ChangeMaker {
 
         System.out.println("Enter the number of coin-denominations and set of coin values:");
         Scanner input = new Scanner(System.in);
-        String firstLine = input.nextLine();
-        if (firstLine.length() == 1) {
-            String[] strArray = firstLine.split(" ");
-            k = Integer.parseInt(strArray[0]);
-            d = new int[k];
+        
+        k = input.nextInt();
+        d = new int[k];
+        for (int i = 0; i < k; i++) {
+            d[i] = input.nextInt();
+        }
 
-            String nextLine = input.nextLine();
-            String[] valueArray = nextLine.split(" ");
-            for (int i = 0; i < k; i++) { 
-                d[i] = Integer.parseInt(valueArray[i]);
-            }
-        }
-        else {
-            String[] strArray = firstLine.split(" ");
-            k = Integer.parseInt(strArray[0]);
-            d = new int[k];
-            result = new int[k];
-            for (int i = 0; i < k; i++){
-                d[i] = Integer.parseInt(strArray[i+1]);
-            }
-        }
         while (n > 0) {
             System.out.println("Enter a positive amount to be changed (enter 0 to quit):");
             n = input.nextInt();
             if (n == 0) {
-            	System.out.println("Thanks for playing. Good Bye.");
+                System.out.println("Thanks for playing. Good Bye.");
                 System.exit(0);
             }
 
@@ -51,9 +37,9 @@ public class ChangeMaker {
             System.out.println("Amount: " + n);
             for (int i = 0; i < k; i++) {
                 if (result[i] != 0) {
-                	if (firstHit != 0) {
-                		System.out.print(" + ");
-                	}
+                    if (firstHit != 0) {
+                        System.out.print(" + ");
+                    }
                     System.out.print(result[i] + "*" + d[i] + "c");
                     count+=result[i];
                     firstHit = 1;
@@ -70,9 +56,9 @@ public class ChangeMaker {
             System.out.println("Amount: " + n);
             for (int i = 0; i < k; i++) {
                 if (result[i] != 0) {
-                	if (firstHit != 0) {
-                		System.out.print(" + ");
-                	}
+                    if (firstHit != 0) {
+                        System.out.print(" + ");
+                    }
                     System.out.print(result[i] + "*" + d[i] + "c");
                     count+=result[i];
                     firstHit = 1;
@@ -118,18 +104,18 @@ public class ChangeMaker {
     }
     
     public static int[] change_greedy(int n, int[] d) {
-    	int[] result = new int[d.length];
-    	int count = 0;
-    	
-    	while (n >= 0 && count < d.length) {
-    		if (d[count] <= n) {
-    			while (n - d[count] >= 0) {
-    				n-=d[count];
-    				result[count]++;
-    			}
-    		}
-    		count++;
-    	}
-    	return result;
+        int[] result = new int[d.length];
+        int count = 0;
+        
+        while (count < d.length && n >= 0) {
+            if (d[count] <= n) {
+                while (n - d[count] >= 0) {
+                    n-=d[count];
+                    result[count]++;
+                }
+            }
+            count++;
+        }
+        return result;
     }
 }
