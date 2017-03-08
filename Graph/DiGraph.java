@@ -1,3 +1,7 @@
+// Arya Karnik (akarnik@calpoly.edu), Stephanie Lascola (slascola@calpoly.edu)
+// 03/10/17
+// Project 5
+
 import java.util.*;
 public class DiGraph {
 	private LinkedList<Integer> graph;
