@@ -9,6 +9,7 @@ public class DiGraphTest {
     public static void main(String args[]) {
         System.out.println("Enter the number of vertices ");
         Scanner input = new Scanner(System.in);
+        boolean quit = false;
 
         int N = input.nextInt();  
         DiGraph graph = new DiGraph(N);
@@ -21,54 +22,52 @@ public class DiGraphTest {
         System.out.println("-print graph (enter p)");
         System.out.println("-Quit (enter q)");
 
-        String line = input.next();
-        char selection = line.charAt(0);
-        while (selection != 'q') {
-        	switch (selection) {
-        		case 'a': 
-        			int from = input.nextInt();
-        			int to = input.nextInt();
-        			graph.addEdge(from, to);
-        			System.out.println("Edge (" + from + ", " + to + ") edge is now added to the graph");
-        			break;
+        while (quit == false) {
+        	String temp = input.nextLine();
+        	if (temp.length() == 1) {
+        		switch (temp.charAt(0)) {
+        			case 'a': 
+        				int from = input.nextInt();
+        				int to = input.nextInt();
+        				graph.addEdge(from, to);
+        				System.out.println("Edge (" + from + ", " + to + ") edge is now added to the graph");
+        				break;
             
-        		case 'd':
-        			from = input.nextInt();
-        			to = input.nextInt();
-        			graph.deleteEdge(from, to);
-        			System.out.println("(" + from + ", " + to + ") edge is now deleted from the graph");
-        			break;
+        			case 'd':
+        				from = input.nextInt();
+        				to = input.nextInt();
+        				graph.deleteEdge(from, to);
+        				System.out.println("(" + from + ", " + to + ") edge is now deleted from the graph");
+        				break;
             
-        		case 'e': 
-        			System.out.println("Number of edges is: " + graph.edgeCount());
-        			break;
+        			case 'e': 
+        				System.out.println("Number of edges is: " + graph.edgeCount());
+        				break;
             
-        		case 'v':
-        			System.out.println("Number of vertices is: " + graph.vertexCount());
-        			break;
+        			case 'v':
+        				System.out.println("Number of vertices is: " + graph.vertexCount());
+        				break;
             
-        		case 'p':
-        			graph.print();
-        			break;
-        		default:
-        			System.out.println("Invalid menu choice");
+        			case 'p':
+        				graph.print();
+        				break;
+        			case 'q':
+        				System.out.println("Goodbye.");
+        				quit = true;
+        				break;
+        			default:
+        				System.out.println("Invalid menu choice");
+        				break;
+        		}
         	}
-            line = input.next();
-            selection = line.charAt(0);
-            
-//            line = input.nextLine();
-//            if (line.contains("/n")) {
-//            	line = input.nextLine();
-//            }
-//            if (line.length() > 1) {
-//            	System.out.println("Invalid menu choice");
-//            	line = input.nextLine();
-//            	selection = line.charAt(0);
-//            }
-//            else {
-//            	selection = line.charAt(0);
-//            }
+        	else if (temp.length() == 0) {
+        		continue;
+        	}
+        	else {
+        		System.out.println("Invalid menu choice");
+        	}
+
         }
-        System.out.println("Goodbye");
+        
     }
 }
