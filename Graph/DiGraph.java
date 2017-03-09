@@ -12,26 +12,32 @@ public class DiGraph {
     }
     
     public void addEdge(int from, int to) {
-        from--;
-        to--;
-        if (!(graph[from].contains(to))) {
-            graph[from].add(to);
+    	if (graph[from - 1] == null) {
+    		graph[from - 1] = new LinkedList();
+    		graph[from - 1].add(to);
+    	}
+    	else if (!(graph[from - 1].contains(to))) {
+            graph[from - 1].add(to);
         }
     }
     
     public void deleteEdge(int from, int to) {
-        if (!graph[from].contains(to)) {
-            System.out.println("Delete Edge Failed: No edge to be deleted");
-        }
-        else {
-            int deleted = graph[from].indexOf(to);
-            graph[from].remove(deleted);
-        }
+    	if (graph[from - 1] != null) {
+    		if (!(graph[from - 1].contains(to))) {
+    			System.out.println("Delete Edge Failed: No edge to be deleted");
+    		}
+    		else {
+    			int deleted = graph[from - 1].indexOf(to);
+    			graph[from - 1].remove(deleted);
+    		}
+    	}
     }
     public int edgeCount() {
         int totalEdges = 0;
         for (int i = 0; i < graph.length; i++) {
-            totalEdges += graph[i].size();
+        	if (graph[i] != null) {
+        		totalEdges += graph[i].size();
+        	}
         }
 
         return totalEdges;
@@ -40,12 +46,20 @@ public class DiGraph {
         return graph.length;
     }
     public void print() {
+    	System.out.println("The graph is the following:");
         for (int i = 0; i < graph.length; i++) {
             i++;
-            System.out.println(i + "is connected to: ");
+            System.out.print(i + " is connected to: ");
             i--;
-            for (int j = 0; j < graph[i].size(); j++) {
-                System.out.println(graph[i].get(j) + ", ");
+            if (graph[i] != null) {
+            	for (int j = 0; j < graph[i].size(); j++) {
+            		if (j != graph[i].size() - 1) {
+            			System.out.print(graph[i].get(j) + ", ");
+            		}
+            		else {
+            			System.out.print(graph[i].get(j));
+            		}
+            	}
             }
             System.out.println();
         }
