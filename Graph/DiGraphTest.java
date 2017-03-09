@@ -24,32 +24,37 @@ public class DiGraphTest {
         String line = input.next();
         char selection = line.charAt(0);
         while (selection != 'q') {
-            if (selection == 'a') {
-                System.out.println("Enter two integers representing from and to: ");
+        	switch (selection) {
+        	case 'a': 
                 int from = input.nextInt();
                 int to = input.nextInt();
                 graph.addEdge(from, to);
                 System.out.println("Edge (" + from + ", " + to + ") was added");
-            }
-            else if (selection == 'd') {
-                System.out.println("Enter two integers representing from and to: ");
-                int from = input.nextInt();
-                int to = input.nextInt();
+                break;
+            
+        	case 'd':
+                from = input.nextInt();
+                to = input.nextInt();
                 graph.deleteEdge(from, to);
                 System.out.println("Edge (" + from + ", " + to + ") was deleted");
-            }
-            else if (selection == 'e') {
+                break;
+            
+        	case 'e': 
                 System.out.println("Number of edges are: " + graph.edgeCount());
-            }
-            else if (selection == 'v') {
+                break;
+            
+        	case 'v':
                 System.out.println("Number of vertices are: " + graph.vertexCount());
-            }
-            else if (selection == 'p') {
+                break;
+            
+        	case 'p': {
                 graph.print();
+                break;
             }
-            else {
+            default: {
             	System.out.println("Invalid menu choice");
             }
+        	}
             line = input.next();
             selection = line.charAt(0);
             
