@@ -51,6 +51,22 @@ public class DiGraphTest {
         			case 'p':
         				graph.print();
         				break;
+        			case 't':
+        				int[] A = new int[N];
+        				A = graph.topSort();
+        				for (int i = 0; i < A.length; i++) {
+                    		if (i != A.length - 1) {
+                    			A[i]++;
+                    			System.out.print(A[i] + ", ");
+                    			A[i]--;
+                    		}
+                    		else {
+                    			A[i]++;
+                    			System.out.print(A[i]);
+                    			A[i]--;
+                    		}
+                    	}
+        				break;
         			case 'q':
         				System.out.println("Goodbye.");
         				quit = true;
