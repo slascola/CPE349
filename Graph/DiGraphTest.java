@@ -25,35 +25,33 @@ public class DiGraphTest {
         char selection = line.charAt(0);
         while (selection != 'q') {
         	switch (selection) {
-        	case 'a': 
-                int from = input.nextInt();
-                int to = input.nextInt();
-                graph.addEdge(from, to);
-                System.out.println("Edge (" + from + ", " + to + ") was added");
-                break;
+        		case 'a': 
+        			int from = input.nextInt();
+        			int to = input.nextInt();
+        			graph.addEdge(from, to);
+        			System.out.println("Edge (" + from + ", " + to + ") was added");
+        			break;
             
-        	case 'd':
-                from = input.nextInt();
-                to = input.nextInt();
-                graph.deleteEdge(from, to);
-                System.out.println("Edge (" + from + ", " + to + ") was deleted");
-                break;
+        		case 'd':
+        			from = input.nextInt();
+        			to = input.nextInt();
+        			graph.deleteEdge(from, to);
+        			System.out.println("Edge (" + from + ", " + to + ") was deleted");
+        			break;
             
-        	case 'e': 
-                System.out.println("Number of edges are: " + graph.edgeCount());
-                break;
+        		case 'e': 
+        			System.out.println("Number of edges are: " + graph.edgeCount());
+        			break;
             
-        	case 'v':
-                System.out.println("Number of vertices are: " + graph.vertexCount());
-                break;
+        		case 'v':
+        			System.out.println("Number of vertices are: " + graph.vertexCount());
+        			break;
             
-        	case 'p': {
-                graph.print();
-                break;
-            }
-            default: {
-            	System.out.println("Invalid menu choice");
-            }
+        		case 'p':
+        			graph.print();
+        			break;
+        		default:
+        			System.out.println("Invalid menu choice");
         	}
             line = input.next();
             selection = line.charAt(0);
