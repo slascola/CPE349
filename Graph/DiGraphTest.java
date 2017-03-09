@@ -30,7 +30,7 @@ public class DiGraphTest {
         				int from = input.nextInt();
         				int to = input.nextInt();
         				graph.addEdge(from, to);
-        				System.out.println("Edge (" + from + ", " + to + ") edge is now added to the graph");
+        				System.out.println("(" + from + ", " + to + ") edge is now added to the graph");
         				break;
             
         			case 'd':
