@@ -64,4 +64,47 @@ public class DiGraph {
             System.out.println();
         }
     }
+    private int[] indegrees() {
+    	int N = graph.length;
+    	int IN[] = new int[N];
+    	for (int u = 0; u < N; u++) {
+    		if (graph[u] != null) {
+    			for (int v = 0; v < graph[u].size(); v++) {
+    				IN[v]++;
+    			}
+    		}
+    	}
+    	return IN;
+    }
+    public int[] topSort() {
+    	int N = graph.length;
+    	int[] IN = indegrees();
+    	int[] A = new int[N];
+    	Queue<Integer> q = new LinkedList<>();
+    	
+    	for (int u = 0; u < N; u++) {
+    		if (IN[u] == 0) {
+    			q.add(u);
+    		}
+    	}
+    	int i = 0;
+    	int u = 0;
+    	while (!(q.isEmpty())) {
+    		u = q.remove();
+    		A[i] = u;
+    		i++;
+    		if (graph[u] != null) {
+    			for (int v = 0; v < graph[u].size(); v++) {
+    				IN[v]--;
+    				if (IN[v] == 0) {
+    					q.add(v);
+    				}
+    			}
+    		}
+    	}
+    	if (i != (N + 1)) {
+    		throw new IllegalArgumentException();
+    	}
+    	return A;
+    }
 }
