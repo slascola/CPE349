@@ -67,10 +67,13 @@ public class DiGraph {
     private int[] indegrees() {
     	int N = graph.length;
     	int IN[] = new int[N];
+		for (int i = 0; i < N; i++) {
+			IN[i] = 0;
+		}
     	for (int u = 0; u < N; u++) {
     		if (graph[u] != null) {
     			for (int v = 0; v < graph[u].size(); v++) {
-    				IN[v]++;
+    				IN[graph[u].get(v) -1]++;
     			}
     		}
     	}
@@ -84,7 +87,7 @@ public class DiGraph {
     	
     	for (int u = 0; u < N; u++) {
     		if (IN[u] == 0) {
-    			q.add(u);
+    			q.add(u + 1);
     		}
     	}
     	int i = 0;
@@ -93,17 +96,18 @@ public class DiGraph {
     		u = q.remove();
     		A[i] = u;
     		i++;
-    		if (graph[u] != null) {
-    			for (int v = 0; v < graph[u].size(); v++) {
-    				IN[v]--;
-    				if (IN[v] == 0) {
-    					q.add(v);
+    		if (graph[u-1] != null) {
+    			for (int v = 0; v < graph[u-1].size(); v++) {
+    				IN[graph[u-1].get(v) - 1]--;
+    				if (IN[graph[u-1].get(v) - 1] == 0) {
+    					q.add(graph[u-1].get(v));
     				}
     			}
     		}
     	}
-    	if (i != (N + 1)) {
-    		throw new IllegalArgumentException();
+    	if (i != N) {
+				System.out.println("ERROR: Graph is cyclic");
+				A[0] = -1;
     	}
     	return A;
     }
