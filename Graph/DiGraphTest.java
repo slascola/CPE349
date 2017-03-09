@@ -29,22 +29,22 @@ public class DiGraphTest {
         			int from = input.nextInt();
         			int to = input.nextInt();
         			graph.addEdge(from, to);
-        			System.out.println("Edge (" + from + ", " + to + ") was added");
+        			System.out.println("Edge (" + from + ", " + to + ") edge is now added to the graph");
         			break;
             
         		case 'd':
         			from = input.nextInt();
         			to = input.nextInt();
         			graph.deleteEdge(from, to);
-        			System.out.println("Edge (" + from + ", " + to + ") was deleted");
+        			System.out.println("(" + from + ", " + to + ") edge is now deleted from the graph");
         			break;
             
         		case 'e': 
-        			System.out.println("Number of edges are: " + graph.edgeCount());
+        			System.out.println("Number of edges is: " + graph.edgeCount());
         			break;
             
         		case 'v':
-        			System.out.println("Number of vertices are: " + graph.vertexCount());
+        			System.out.println("Number of vertices is: " + graph.vertexCount());
         			break;
             
         		case 'p':
