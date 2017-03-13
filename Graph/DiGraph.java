@@ -111,4 +111,38 @@ public class DiGraph {
     	}
     	return A;
     }
+    private class VertexInfo {
+    	private int distance;
+    	private int predecessor;
+    	
+    	private VertexInfo[] BFS(int s) {
+    		int N = graph.length;
+    		VertexInfo[] VA = new VertexInfo[N];
+    		
+    		for (int u = 0; u < N; u++) {
+    			VA[u].distance = -1;
+    			VA[u].predecessor = -1;
+    		}
+    		
+    		VA[s].distance = 0;
+    		Queue<Integer> Q = new LinkedList<>();
+    		Q.add(s);
+    		
+    		int u = 0;
+    		while (!(Q.isEmpty())) {
+    			u = Q.remove();
+    			if (graph[u - 1] != null) {
+    				for (int v = 0; v < graph[u-1].size(); u++) {
+    					if (VA[graph[u-1].get(v) - 1].distance == -1) {
+    						VA[graph[u-1].get(v) - 1].distance = VA[u].distance + 1;
+    						VA[graph[u-1].get(v) - 1].predecessor = u;
+    						Q.add(graph[u-1].get(v));
+    					}
+    				}
+    			}
+    		}
+    		
+    		return VA;
+    	}
+    }
 }
