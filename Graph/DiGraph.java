@@ -112,37 +112,75 @@ public class DiGraph {
     	return A;
     }
     private class VertexInfo {
-    	private int distance;
-    	private int predecessor;
+    	int distance;
+    	int predecessor;
     	
-    	private VertexInfo[] BFS(int s) {
-    		int N = graph.length;
-    		VertexInfo[] VA = new VertexInfo[N];
-    		
-    		for (int u = 0; u < N; u++) {
-    			VA[u].distance = -1;
-    			VA[u].predecessor = -1;
-    		}
-    		
-    		VA[s].distance = 0;
-    		Queue<Integer> Q = new LinkedList<>();
-    		Q.add(s);
-    		
-    		int u = 0;
-    		while (!(Q.isEmpty())) {
-    			u = Q.remove();
-    			if (graph[u - 1] != null) {
-    				for (int v = 0; v < graph[u-1].size(); u++) {
-    					if (VA[graph[u-1].get(v) - 1].distance == -1) {
-    						VA[graph[u-1].get(v) - 1].distance = VA[u].distance + 1;
-    						VA[graph[u-1].get(v) - 1].predecessor = u;
-    						Q.add(graph[u-1].get(v));
-    					}
-    				}
-    			}
-    		}
-    		
-    		return VA;
-    	}
     }
+    private VertexInfo[] BFS(int s) {
+		int N = graph.length;
+		VertexInfo[] VA = new VertexInfo[N];
+		
+		for (int u = 0; u < N; u++) {
+			VA[u] = new VertexInfo();
+			VA[u].distance = -1;
+			VA[u].predecessor = -1;
+		}
+		
+		VA[s].distance = 0;
+		Queue<Integer> Q = new LinkedList<>();
+		Q.add(s);
+		
+		int u = 0;
+		while (!(Q.isEmpty())) {
+			u = Q.remove();
+			if (graph[u - 1] != null) {
+				for (int v = 0; v < graph[u-1].size(); v++) {
+					if (VA[graph[u-1].get(v) - 1].distance == -1) {
+						VA[graph[u-1].get(v) - 1].distance = VA[u].distance + 1;
+						VA[graph[u-1].get(v) - 1].predecessor = u;
+						Q.add(graph[u-1].get(v));
+					}
+				}
+			}
+		}
+		
+		return VA;
+	}
+    public boolean isTherePath(int from, int to) {
+		VertexInfo[] path = BFS(from);
+		if (path[to - 1].distance >= 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+		
+	}
+	public int lengthOfPath(int from, int to) {
+		int length = 0;
+		VertexInfo[] path = BFS(from);
+		length = path[to - 1].distance;
+		return length;
+		
+	}
+	public void printPath(int from, int to) {
+		VertexInfo[] VA = BFS(from);
+		if (VA[to - 1].distance == -1) {
+			System.out.println("There is no path");
+		}
+		else {
+			String output = "";
+			if (VA[to].predecessor == -1) {
+				System.out.println("The path is: " + from + " -> " + to);
+			}
+			else {
+				while (VA[to].predecessor != -1) {
+					output = "-> " + to + " " + output;
+					to = VA[to - 1].predecessor;
+				}
+				output = from + " " + output;
+				System.out.println("The path is: " + output);
+			}
+		}
+	}
 }
