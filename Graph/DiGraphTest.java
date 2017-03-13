@@ -20,6 +20,9 @@ public class DiGraphTest {
         System.out.println("-edge count (enter e):");
         System.out.println("-vertex count (enter v)");
         System.out.println("-print graph (enter p)");
+        System.out.println("-is there a path (enter i)");
+        System.out.println("-length of the path (enter l)");
+        System.out.println("-shortest path (enter s)");
         System.out.println("-Quit (enter q)");
 
         while (quit == false) {
@@ -65,6 +68,21 @@ public class DiGraphTest {
                     		}
 							System.out.println();
 						}
+        				break;
+        			case 'i':
+        				from = input.nextInt();
+        				to = input.nextInt();
+        				System.out.println("Is there a path from " + from + " to " + to + ": " + graph.isTherePath(from, to));
+        				break;
+        			case 'l':
+        				from = input.nextInt();
+        				to = input.nextInt();
+        				System.out.println("Length of path is: " + graph.lengthOfPath(from, to));
+        				break;
+        			case 's':
+        				from = input.nextInt();
+        				to = input.nextInt();
+        				graph.printPath(from, to);
         				break;
         			case 'q':
         				System.out.println("Goodbye.");
